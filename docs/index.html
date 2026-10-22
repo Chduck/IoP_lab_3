@@ -1,0 +1,98 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="./"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>google-motivator</title><meta name="description" content="Documentation for google-motivator"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container"><a href="index.html" class="title">google-motivator</a>
+<div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/>
+<ul role="listbox" id="tsd-search-results"></ul>
+<div id="tsd-search-status" aria-live="polite" aria-atomic="true">
+<div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></header>
+<div class="container container-main">
+<div class="col-content">
+<div class="tsd-page-title">
+<h1>google-motivator</h1></div>
+<div class="tsd-panel tsd-typography"><h1 id="readme" class="tsd-anchor-link">README<a href="#readme" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1>
+<p>A small VS Code extension that adds two commands: <code>Motivate</code> to cheer you up, and <code>Google Style Naming</code> to automatically rename identifiers in your C++ code according to the <a href="https://google.github.io/styleguide/cppguide.html">Google C++ Style Guide</a>.</p>
+<div class="tsd-alert tsd-alert-note"><div class="tsd-alert-title"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><use href="assets/icons.svg#icon-alertNote"></use></svg><span>Note</span></div><p>
+This extension does not change code style fully, it only changes identifiers' names.</p>
+</div>
+<div class="tsd-alert tsd-alert-warning"><div class="tsd-alert-title"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><use href="assets/icons.svg#icon-alertWarning"></use></svg><span>Warning</span></div><p>
+This extension does not support constants and special rules of naming applyed to private fields.</p>
+</div>
+<h2 id="features" class="tsd-anchor-link">Features<a href="#features" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<h3 id="1-make-a-motivational-phrase-appear" class="tsd-anchor-link">1. <code>Motivate</code> - Make a motivational phrase appear<a href="#1-make-a-motivational-phrase-appear" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>Shows a random motivational phrase in a modal information message.</p>
+<p><strong>How to use:</strong></p>
+<ol>
+<li>Open the Command Palette (<code>Ctrl+Shift+P</code>).</li>
+<li>Run <strong>Motivate</strong>.</li>
+</ol>
+<p>A modal dialog with a random phrase appears. Close it to continue working.</p>
+<h3 id="2-change-identifires-names-so-they-follow-google-c-style" class="tsd-anchor-link">2. <code>Google Style Naming</code> - Change identifires' names so they follow Google C++ Style<a href="#2-change-identifires-names-so-they-follow-google-c-style" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>Rewrites identifiers in the <strong>active document</strong> to follow the Google C++
+naming conventions:</p>
+<table>
+<thead>
+<tr>
+<th>Kind</th>
+<th>Style</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type names</td>
+<td><code>PascalCase</code></td>
+<td><code>my_class</code> -&gt; <code>MyClass</code></td>
+</tr>
+<tr>
+<td>Variable names</td>
+<td><code>snake_case</code></td>
+<td><code>myVariable</code> -&gt; <code>my_variable</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>How it works:</strong></p>
+<ol>
+<li>Finds all <code>class</code>, <code>struct</code>, and <code>union</code> declarations and renames them to <code>PascalCase</code>.</li>
+<li>Collects a list of types consisting of built-in types (<code>bool</code>, <code>int</code>, <code>long</code>, <code>short</code>, <code>double</code>, <code>float</code>, <code>char</code>, <code>auto</code>, <code>std::string</code>, <code>size_t</code>, <code>int8_t</code>…<code>int64_t</code>) and the user-defined types found in step 1.</li>
+<li>Finds variable declarations of those types and renames the variables to <code>snake_case</code>.</li>
+<li>Applies all renamings globally across the document in a single edit.</li>
+</ol>
+<p><strong>How to use:</strong></p>
+<ol>
+<li>Open a C/C++ file in the editor.</li>
+<li>Open the Command Palette (<code>Ctrl+Shift+P</code>).</li>
+<li>Run <strong>Google Style Naming</strong>.</li>
+</ol>
+<h2 id="requirements" class="tsd-anchor-link">Requirements<a href="#requirements" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>VS Code version <strong>1.103.x</strong> or newer.</p>
+<h2 id="author" class="tsd-anchor-link">Author<a href="#author" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>Yudin Andrew Valerievich (Юдин Андрей Валерьевич) from group M3105</p>
+</div></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div>
+<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>On This Page</h3></summary>
+<div class="tsd-accordion-details"><a href="#readme"><span>README</span></a>
+<ul>
+<li><a href="#features"><span>Features</span></a></li>
+<li>
+<ul>
+<li><a href="#1-make-a-motivational-phrase-appear"><span>1.  -<wbr/> <wbr/>Make a motivational phrase appear</span></a></li>
+<li><a href="#2-change-identifires-names-so-they-follow-google-c-style"><span>2.  -<wbr/> <wbr/>Change identifires&#39; names so they follow <wbr/>Google <wbr/>C++ <wbr/>Style</span></a></li></ul></li>
+<li><a href="#requirements"><span>Requirements</span></a></li>
+<li><a href="#author"><span>Author</span></a></li></ul></div></details></div>
+<div class="site-menu">
+<nav class="tsd-navigation"><a href="modules.html">google-motivator</a>
+<ul class="tsd-small-nested-navigation" id="tsd-nav-container">
+<li>Loading...</li></ul></nav></div></div></div><footer>
+<p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer>
+<div class="overlay"></div></body></html>
